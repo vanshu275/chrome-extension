@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [url, setUrl] = useState("");
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      setUrl(tabs[0].url);
-    });
-  }, []);
+  chrome.storage.local.get(["title"], (result) => {
+  console.log(result);
+  setTitle(result.title);
+});
+}, []);
 
-  return (
-    <div>
-      <h2>YouTube Notes</h2>
-      <p>{url}</p>
-    </div>
-  );
+  return <h2>{title}</h2>;
 }
 
 export default App;

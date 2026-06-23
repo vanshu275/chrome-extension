@@ -5,5 +5,12 @@
   "action": {
     "default_popup": "index.html"
   },
-  "permissions": ["activeTab", "tabs"]
+  "permissions": ["activeTab", "tabs", "storage"],
+  "host_permissions": ["https://*.youtube.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ]
 }
